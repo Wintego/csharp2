@@ -1,0 +1,81 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="560" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <local:Converter x:Key="conv"></local:Converter>  
+    </Window.Resources>
+
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="280*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="10">
+            <TextBlock Text="Департамент"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="cb" SelectedIndex="0" DisplayMemberPath="depName" Width="100"/>
+                <Button Content="Изменить" Click="ShowChangeDepNamePanel"></Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5" x:Name="changeDepNamePanel" Visibility="Collapsed">
+                <TextBlock Text="Новое название"></TextBlock>
+                <TextBox x:Name="changeDepName" Width="100" RenderTransformOrigin="0.27,0.5"></TextBox>
+                <Button Content="Принять" Click="ChangeDepartment" Width="76"></Button>
+            </StackPanel>
+
+            <ListBox Margin="0,10,0,10" x:Name="lb" Height="220" SelectionMode="Single"
+                     ItemsSource="{Binding ElementName=cb, Path=SelectedItem, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource conv}}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding firstName}"/>
+                            <TextBlock Text=" "/>
+                            <TextBlock Text="{Binding lastName}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="10" Grid.RowSpan="2">
+            <TextBlock TextWrapping="Wrap" Text="ID"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding ElementName=lb, Path=SelectedItem.Id}" x:Name="Id" IsEnabled="False"/>
+            <TextBlock TextWrapping="Wrap" Text="Имя"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding ElementName=lb, Path=SelectedItem.firstName}" x:Name="fname"/>
+            <TextBlock TextWrapping="Wrap" Text="Фамилия"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding ElementName=lb, Path=SelectedItem.lastName}" x:Name="lname"/>
+            <TextBlock TextWrapping="Wrap" Text="Возраст"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding ElementName=lb, Path=SelectedItem.age}" x:Name="age"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="10" Grid.Row="1">
+            <TextBlock Text="Управление сотрудниками"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Добавить сотрудника" Height="23" Margin="0,0,17,0" Click="AddEmployee"/>
+                <Button Content="Удалить сотрудника" Click="RemoveEmployee"/>
+            </StackPanel>            
+        </StackPanel>
+        
+        
+        <StackPanel Grid.Column="0" Grid.Row="1" Margin="10">
+            <TextBlock Text="Управление департаментами"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="120" Height="23" x:Name="newDepName"/>
+                <Button Content="Добавить" Click="AddDepartment"/>
+                <Button Content="Удалить деп" Click="RemoveDepartment" Margin="10,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
+
+
+    </Grid>
+</Window>
