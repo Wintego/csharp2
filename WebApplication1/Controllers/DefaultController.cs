@@ -22,7 +22,11 @@ namespace WebApplication1.Controllers
         public HttpResponseMessage Post([FromBody]Employees value)
         {
             if (db.AddEmployee(value))
+            {
+                
                 return Request.CreateResponse(HttpStatusCode.Created);
+            }
+                
             else return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
     }

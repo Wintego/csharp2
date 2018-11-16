@@ -8,17 +8,17 @@ namespace WebApplication1.Models
 {
     public class db
     {
-        private SqlConnection connection;
+        private SqlConnection connection = WpfApp1.MainWindow.connection;
 
         public db()
         {
-            SqlConnectionStringBuilder connectionString = new SqlConnectionStringBuilder
-            {
-                DataSource = @"(localdb)\MSSQLLocalDB",
-                InitialCatalog = "lession7",
-                Pooling = true
-            };
-            connection = new SqlConnection(connectionString.ConnectionString);
+            //SqlConnectionStringBuilder connectionString = new SqlConnectionStringBuilder
+            //{
+            //    DataSource = @"(localdb)\MSSQLLocalDB",
+            //    InitialCatalog = "lession7",
+            //    Pooling = true
+            //};
+            //connection = new SqlConnection(connectionString.ConnectionString);
             connection.Open();
         }
 
