@@ -8,7 +8,7 @@ namespace WebApplication1.Models
 {
     public class db
     {
-        private SqlConnection connection = WpfApp1.MainWindow.connection;
+        private SqlConnection connection;
 
         public db()
         {
@@ -19,6 +19,8 @@ namespace WebApplication1.Models
             //    Pooling = true
             //};
             //connection = new SqlConnection(connectionString.ConnectionString);
+            WpfApp1.MainWindow.SqlRun();
+            connection = WpfApp1.MainWindow.connection;
             connection.Open();
         }
 

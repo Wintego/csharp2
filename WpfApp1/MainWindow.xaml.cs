@@ -84,7 +84,7 @@ namespace WpfApp1
         /// <summary>
         /// настройка соединения
         /// </summary>
-        private void SqlRun()
+        public static void SqlRun()
         {
             SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder
             {
