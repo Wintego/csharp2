@@ -13,13 +13,13 @@ namespace WebApplication1.Controllers
         private db db = new db();
 
         [Route("getlist")]
-        public List<Employees> Get() => db.GetList();
+        public List<WpfApp1.Employee> Get() => db.GetList();
 
         [Route("getlist/{ID}")]
-        public Employees Get(int id) { return db.GetById(id); }
+        public WpfApp1.Employee Get(int id) { return db.GetById(id); }
 
         [Route("addemployee")]
-        public HttpResponseMessage Post([FromBody]Employees value)
+        public HttpResponseMessage Post([FromBody]WpfApp1.Employee value)
         {
             if (db.AddEmployee(value))
             {

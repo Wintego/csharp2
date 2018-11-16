@@ -3,7 +3,7 @@ using System.Data;
 
 namespace WpfApp1
 {
-    class Employee
+    public class Employee
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,6 +14,7 @@ namespace WpfApp1
             LastName = ln;
             Age = a;
         }
+        public Employee() { }
         public static DataTable dtEmployee;
         public static SqlDataAdapter dataAdapterEmployee;
         /// <summary>

@@ -24,9 +24,9 @@ namespace WebApplication1.Models
             connection.Open();
         }
 
-        public List<Employees> GetList()
+        public List<WpfApp1.Employee> GetList()
         {
-            List<Employees> list = new List<Employees>();
+            List<WpfApp1.Employee> list = new List<WpfApp1.Employee>();
             string sql = @"SELECT * FROM Employees";
             using (SqlCommand com = new SqlCommand(sql, connection))
             {
@@ -34,11 +34,11 @@ namespace WebApplication1.Models
                 {
                     while (reader.Read())
                     {
-                        Employees employee = new Employees()
+                        WpfApp1.Employee employee = new WpfApp1.Employee()
                         {
-                            firstName = reader["firstName"].ToString(),
-                            lastName = reader["lastName"].ToString(),
-                            age = reader["age"].ToString(),
+                            FirstName = reader["firstName"].ToString(),
+                            LastName = reader["lastName"].ToString(),
+                            Age = Convert.ToInt32(reader["age"]),
                         };
                         list.Add(employee);
                     }
@@ -47,9 +47,9 @@ namespace WebApplication1.Models
             return list;
         }
 
-        public Employees GetById(int ID)
+        public WpfApp1.Employee GetById(int ID)
         {
-            Employees employee = new Employees();
+            WpfApp1.Employee employee = new WpfApp1.Employee();
             string sql = @"SELECT * FROM Employees WHERE ID = "+ ID;
             using (SqlCommand com = new SqlCommand(sql, connection))
             {
@@ -57,11 +57,11 @@ namespace WebApplication1.Models
                 {
                     while (reader.Read())
                     {
-                        employee = new Employees()
+                        employee = new WpfApp1.Employee()
                         {
-                            firstName = reader["firstName"].ToString(),
-                            lastName = reader["lastName"].ToString(),
-                            age = reader["age"].ToString(),
+                            FirstName = reader["firstName"].ToString(),
+                            LastName = reader["lastName"].ToString(),
+                            Age = Convert.ToInt32(reader["age"]),
                         };
                     }
                 }
@@ -69,14 +69,14 @@ namespace WebApplication1.Models
             return employee;
         }
 
-        public bool AddEmployee(Employees employee)
+        public bool AddEmployee(WpfApp1.Employee employee)
         {
             try
             {
                 string sqlAdd = $@" INSERT INTO Employees(firstName, lastName, age)
-                               VALUES(N'{employee.firstName}',
-                                      N'{employee.lastName}',
-                                      N'{employee.age}' ) ";
+                               VALUES(N'{employee.FirstName}',
+                                      N'{employee.LastName}',
+                                      N'{employee.Age}' ) ";
 
                 using (var com = new SqlCommand(sqlAdd, connection))
                 {
