@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -82,6 +83,18 @@ namespace WebApplication1.Models
                 {
                     com.ExecuteNonQuery();
                 }
+
+                //var a = WpfApp1.Employee.dtEmployee;
+                //var b = WpfApp1.Employee.dataAdapterEmployee.Update(WpfApp1.Employee.dtEmployee);
+                //WpfApp1.Employee.dtEmployee = new DataTable();                
+                //DataRow newRow = WpfApp1.Employee.dtEmployee.NewRow();
+                //WpfApp1.Employee.dataAdapterEmployee = new SqlDataAdapter();
+                //WpfApp1.Employee.dataAdapterEmployee.Fill(WpfApp1.Employee.dtEmployee);
+                //newRow["firstName"] = employee.FirstName;
+                //newRow["lastName"] = employee.LastName;
+                //newRow["age"] = employee.Age;
+                //WpfApp1.Employee.dtEmployee.Rows.Add(newRow);
+                //WpfApp1.Employee.dataAdapterEmployee.Update(WpfApp1.Employee.dtEmployee);
             }
             catch
             {

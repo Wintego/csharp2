@@ -49,6 +49,7 @@ namespace WpfApp1
             //Department a = cb.SelectedItem as Department;
             //a.Employees.Add(new Employee(fname.Text, lname.Text, Convert.ToInt32(age.Text)));
 
+            
             DataRow newRow = Employee.dtEmployee.NewRow();
             newRow["firstName"] = fname.Text;
             newRow["lastName"] = lname.Text;
